@@ -1,8 +1,8 @@
 //Happy Birthday to You
 
 const unsigned char SPPIN = A0;
-const unsigned char tempo = 1200;
-float Piano[10];
+int tempo = 500;
+int Piano[10];
 
 void setup() {
   // put your setup code here, to run once:
@@ -20,17 +20,22 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-  unsigned char xx[] = {1, 5, 5, 2, 5, 5, 5, 5, 5, 5, 2, 2, 2, 2, 2, 2, 5, 5, 5, 5, 5, 5, 1, 5, 5, 2, 5};
+  //  unsigned char xx[] = {5, 5, 6, 5, 1, 7, 5, 5, 6, 5, 2, 1, 5, 5, 5, 3, 1, 7, 6, 0, 0, 4, 4, 3, 1, 2};
+  unsigned char xx[] = {5,5, 6, 5, 8,7};
   for (unsigned char i = 0; i < sizeof(xx); i++) {
-    PianoS(xx[i]);
     Serial.print(xx[i]);
+    Serial.print("-------");
+    PianoS(xx[i]);
   }
-  while (1) {
 
+  while (1) {
+    noTone(A0);
   }
 }
 
 void PianoS(unsigned char x) {
-  tone(A0, Piano[x], tempo);
+  Serial.println(Piano[x]);
+  tone(A0, Piano[x]);
   delay(tempo);
+  return;
 }
