@@ -30,7 +30,6 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
-
   while (1) {
     noTone(A0);
     if (flag == 1) {
@@ -48,7 +47,6 @@ void loop() {
 void ISR1() {
   flag = 1;
 }
-
 
 //Happy Birthday to You
 void music() {
