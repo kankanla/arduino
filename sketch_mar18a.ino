@@ -1,6 +1,6 @@
 //Happy Birthday to You
 
-const unsigned char SPPIN = A0;
+const unsigned char SPPIN = A5;
 int Piano[20];
 
 unsigned char xx[] = {50, 50, 6, 5, 11, 7, 0,
@@ -25,19 +25,14 @@ void setup() {
   Piano[13] = 659.255; //E5
   Piano[14] = 698.456; //F5
   Piano[15] = 783.991; //G5
-
 }
-
-
 
 void loop() {
   // put your main code here, to run repeatedly:
-  //    unsigned char xx[] = {5, 5, 6, 5, 1, 7, 5, 5, 6, 5, 2, 1, 5, 5, 5, 3, 1, 7, 6, 0, 0, 4, 4, 3, 1, 2};
   Serial.println("a");
   music();
   music();
   Serial.println("b");
-
   while (1) {
     noTone(A0);
   }
@@ -54,9 +49,9 @@ void music() {
 }
 
 void PianoS(unsigned char x, int tempo) {
-  tone(A0, Piano[x]);
+  tone(SPPIN, Piano[x]);
   delay(tempo);
-  noTone(A0);
+  noTone(SPPIN);
   delay(0);
   return;
 }
