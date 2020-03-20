@@ -1,8 +1,13 @@
 //Happy Birthday to You
 
 const unsigned char SPPIN = A0;
-int tempo = 500;
-int Piano[10];
+int Piano[20];
+
+unsigned char xx[] = {50, 50, 6, 5, 11, 7, 0,
+                      50, 50, 6, 5, 12, 11, 0,
+                      50, 50, 15, 13, 11, 7, 6,
+                      14, 140, 13, 11, 12, 11, 0
+                     };
 
 void setup() {
   // put your setup code here, to run once:
@@ -15,27 +20,43 @@ void setup() {
   Piano[5] = 391.995; //G4
   Piano[6] = 440.000; //A4
   Piano[7] = 493.883; //B5
-  Piano[8] = 523.251; //C5
+  Piano[11] = 523.251; //C5
+  Piano[12] = 587.330; //D5
+  Piano[13] = 659.255; //E5
+  Piano[14] = 698.456; //F5
+  Piano[15] = 783.991; //G5
+
 }
+
+
 
 void loop() {
   // put your main code here, to run repeatedly:
-  //  unsigned char xx[] = {5, 5, 6, 5, 1, 7, 5, 5, 6, 5, 2, 1, 5, 5, 5, 3, 1, 7, 6, 0, 0, 4, 4, 3, 1, 2};
-  unsigned char xx[] = {5,5, 6, 5, 8,7};
-  for (unsigned char i = 0; i < sizeof(xx); i++) {
-    Serial.print(xx[i]);
-    Serial.print("-------");
-    PianoS(xx[i]);
-  }
+  //    unsigned char xx[] = {5, 5, 6, 5, 1, 7, 5, 5, 6, 5, 2, 1, 5, 5, 5, 3, 1, 7, 6, 0, 0, 4, 4, 3, 1, 2};
+  Serial.println("a");
+  music();
+  music();
+  Serial.println("b");
 
   while (1) {
     noTone(A0);
   }
 }
 
-void PianoS(unsigned char x) {
-  Serial.println(Piano[x]);
+void music() {
+  for (unsigned char i = 0; i < sizeof(xx); i++) {
+    if (xx[i] == 50 || xx[i] == 40 || xx[i] == 140) {
+      PianoS((xx[i] / 10), 300);
+    } else {
+      PianoS(xx[i], 600);
+    }
+  }
+}
+
+void PianoS(unsigned char x, int tempo) {
   tone(A0, Piano[x]);
   delay(tempo);
+  noTone(A0);
+  delay(0);
   return;
 }
