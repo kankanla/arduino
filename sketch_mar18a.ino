@@ -31,7 +31,6 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   while (1) {
-    noTone(A0);
     if (flag == 1) {
       noTone(SPPIN);
       delay(1000);
